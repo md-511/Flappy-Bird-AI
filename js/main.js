@@ -9,6 +9,11 @@ const HEIGHT = canvas.height = 700;
 const SPEED = 10;
 const DISTANCE_BETWEEN_PIPES = 300;
 
+// Setting up font
+
+ctx.textAlign = "center";
+ctx.font = "bold 30px Press VT323";
+
 // Mouse input
 
 let mouse_down = false;
@@ -54,7 +59,7 @@ function main (time_stamp) {
         if (time_since_last_frame >= SPEED) {
             time_since_last_frame = 0;
             // update
-            pipes.forEach(pipe => pipe.update(birb.ded));
+            pipes.forEach(pipe => pipe.update(birb));
             birb.update(mouse_down);
             if (mouse_down) { mouse_down = false; }
         }
@@ -82,13 +87,22 @@ function main (time_stamp) {
             }
         });
 
-        console.log(birb.score);
+        // console.log(birb.score);
+
+        // Drawing the score
+
+        ctx.fillStyle = "#000000";
+        // ctx.textAlign = "center";
+        // ctx.font = "bold 30px Press VT323";
+        ctx.fillText("Score: " + String(birb.score), WIDTH / 2, 40);
 
         
     }
 
     frame_id = requestAnimationFrame(main);
     
+    // Dead and bird reached bottom then exit
+
     if (birb.ded == true && birb.y + birb.S_HEIGHT >= HEIGHT) {
         cancelAnimationFrame(frame_id);
         return;

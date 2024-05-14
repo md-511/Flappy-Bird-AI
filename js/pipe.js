@@ -11,11 +11,18 @@ class Pipe
         this.speed = -2;
         this.x = this.W_WIDTH;
         this.ded = false;
+        this.passed = false;
+        this.inc = false;       // Incremented score ? yes or no
     }
 
-    update (ded) {
-        if (ded) {
+    update (birb) {
+        if (birb.ded) {
             return;
+        }
+
+        if (this.passed && !this.inc) {
+            birb.score += 1;
+            this.inc = true;
         }
 
         this.x += this.speed;
@@ -31,10 +38,17 @@ class Pipe
     }
 
     check_collision (birb) {
-        if (birb.x + birb.S_WIDTH < this.x || birb.x > this.x + this.S_WIDTH) {
+        if (birb.x + birb.S_WIDTH < this.x) {
             // Cant Collide there
             return false;
         }
+
+        // Passed the pipe
+        if (birb.x > this.x + this.S_WIDTH) {
+            this.passed = true;
+            return false;
+        }
+
         // Need to check for y position
         if (birb.y <= this.gap_y || birb.y + birb.S_HEIGHT >= this.gap_y + this.G_HEIGHT) {
             // console.log("Collided");

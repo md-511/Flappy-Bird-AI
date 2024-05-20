@@ -1,3 +1,6 @@
+import Bird from "./bird.js"
+import Pipe from "./pipe.js"
+
 /** @type {HTMLCanvasElement} */
 
 // CONSTANTS

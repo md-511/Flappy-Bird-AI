@@ -1,4 +1,4 @@
-class Pipe
+export default class Pipe
 {
     constructor (W_WIDTH, W_HEIGHT, ctx) {
         this.W_WIDTH = W_WIDTH;

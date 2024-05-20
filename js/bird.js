@@ -1,4 +1,4 @@
-class Bird
+export default class Bird
 {
     constructor(W_WIDTH, W_HEIGHT, ctx, img_src = 'resources/birb.png') {
         this.ctx = ctx;
